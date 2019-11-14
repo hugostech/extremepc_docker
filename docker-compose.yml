@@ -6,24 +6,40 @@ services:
     restart: always
     depends_on:
       - db
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DBPWD}
     volumes:
-      - ./html_public/:/var/www/html/
+      - ./html_public:/var/www/html
       - ./config/000-default.conf:/etc/apache2/sites-available/000-default.conf
-      - "./config/config.php:/var/www/html/config.php"
-      - "./config/config_admin.php:/var/www/html/admin/config.php"
+      - ./config/config.php:/var/www/html/config.php
+      - ./config/config_admin.php:/var/www/html/admin/config.php
     ports:
       - 8183:80
     links:
       - db
+    networks:
+      - extremepc_net
   db:
     image: mysql:5.7
     command: --default-authentication-plugin=mysql_native_password
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: passw0rd!_hugo
+      MYSQL_ROOT_PASSWORD: ${DBPWD}
       MYSQL_DATABASE: roctech
     volumes:
       - mysql-data:/var/lib/mysql
+    networks:
+      - extremepc_net
+  dbadmin:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DBPWD}
+    ports:
+      - 8080:80
+    networks:
+      - extremepc_net
+networks:
+  extremepc_net:
 volumes:
   mysql-data:
 

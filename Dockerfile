@@ -8,12 +8,12 @@ RUN apt-get update && \
 
 RUN set -xe \
     && apt-get update \
-    && apt-get install -y libpng-dev libjpeg-dev libmcrypt-dev unzip \
+    && apt-get install -y apt-utils libpng-dev libjpeg-dev libmcrypt-dev unzip \
     && rm -rf /var/lib/apt/lists/* \
     && docker-php-ext-configure gd --with-png-dir=/usr --with-jpeg-dir=/usr \
     && docker-php-ext-install gd mbstring mysqli pdo_mysql zip \
     && pecl install mcrypt-1.0.2 \
-    && docker-php-ext-enable mcrypt mysqli
+    && docker-php-ext-enable mcrypt
 
 RUN chown -R www-data:www-data /var/www
 

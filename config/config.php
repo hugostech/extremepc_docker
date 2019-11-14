@@ -24,7 +24,7 @@ define('DIR_UPLOAD', DIR_STORAGE . 'upload/');
 define('DB_DRIVER', 'mysqli');
 define('DB_HOSTNAME', 'db');
 define('DB_USERNAME', 'root');
-define('DB_PASSWORD', 'passw0rd!_hugo');
+define('DB_PASSWORD', getenv('MYSQL_ROOT_PASSWORD'));
 define('DB_DATABASE', 'roctech');
 define('DB_PORT', '3306');
 define('DB_PREFIX', 'oc_');
