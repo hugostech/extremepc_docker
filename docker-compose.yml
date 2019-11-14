@@ -8,6 +8,7 @@ services:
       - db
     volumes:
       - ./html_public/:/var/www/html/
+      - ./config/000-default.conf:/etc/apache2/sites-available/000-default.conf
       - "./config/config.php:/var/www/html/config.php"
       - "./config/config_admin.php:/var/www/html/admin/config.php"
     ports:
