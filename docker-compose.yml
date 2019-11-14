@@ -1,0 +1,29 @@
+version: '3.5'
+services:
+  opencart:
+    build: .
+    image: extremepc:latest
+    restart: always
+    depends_on:
+      - db
+    volumes:
+      - ./html_public/:/var/www/html/
+      - "./config/config.php:/var/www/html/config.php"
+      - "./config/config_admin.php:/var/www/html/admin/config.php"
+    ports:
+      - 8183:80
+    links:
+      - db
+  db:
+    image: mysql:5.7
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: passw0rd!_hugo
+      MYSQL_DATABASE: roctech
+    volumes:
+      - mysql-data:/var/lib/mysql
+volumes:
+  mysql-data:
+
+
