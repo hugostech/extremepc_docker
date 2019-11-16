@@ -40,6 +40,24 @@ services:
       - 8080:80
     networks:
       - extremepc_net
+  italker:
+    build:
+      context: .
+      dockerfile: Dockerfile_italker
+    image: italker:latest
+    restart: always
+    command: /bin/bash start.sh
+    volumes:
+      - ./config/start.sh:/var/www/start.sh
+      - ${ITALKERDIR}:/var/www
+    environment:
+      EXTREMEPC_PASSWORD: ${DBPWD}
+    ports:
+      - 8184:8080
+    networks:
+      - extremepc_net
+    links:
+      - db
 networks:
   extremepc_net:
 volumes:

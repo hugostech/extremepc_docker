@@ -2,3 +2,5 @@
 public_html
 .DS_Store
 storage
+italker
+.env
