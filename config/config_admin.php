@@ -1,17 +1,17 @@
 <?php
 // HTTP
-define('HTTP_SERVER', 'http://127.0.0.1:8183/admin/');
-define('HTTP_CATALOG', 'http://127.0.0.1:8183/');
+define('HTTP_SERVER', 'http://'.getenv('APPHOST').'/admin/');
+define('HTTP_CATALOG', 'http://'.getenv('APPHOST').'/');
 
 // HTTPS
-define('HTTPS_SERVER', 'http://127.0.0.1:8183/admin/');
-define('HTTPS_CATALOG', 'http://127.0.0.1:8183/');
+define('HTTPS_SERVER', 'https://'.getenv('APPHOST').'/admin/');
+define('HTTPS_CATALOG', 'https://'.getenv('APPHOST').'/');
 
 // DIR
 define('DIR_APPLICATION', '/var/www/html/admin/');
 define('DIR_SYSTEM', '/var/www/html/system/');
 define('DIR_IMAGE', '/var/www/html/image/');
-define('DIR_STORAGE', DIR_SYSTEM . 'storage/');
+define('DIR_STORAGE', '/var/www/storage/');
 define('DIR_CATALOG', '/var/www/html/catalog/');
 define('DIR_LANGUAGE', DIR_APPLICATION . 'language/');
 define('DIR_TEMPLATE', DIR_APPLICATION . 'view/template/');

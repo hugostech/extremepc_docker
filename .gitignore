@@ -1,2 +1,4 @@
 .idea
-html_public
+public_html
+.DS_Store
+storage

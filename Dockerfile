@@ -15,6 +15,8 @@ RUN set -xe \
     && pecl install mcrypt-1.0.2 \
     && docker-php-ext-enable mcrypt
 
+RUN mkdir /var/www/storage
+
 RUN chown -R www-data:www-data /var/www
 
 EXPOSE 80

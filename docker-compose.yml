@@ -8,9 +8,11 @@ services:
       - db
     environment:
       MYSQL_ROOT_PASSWORD: ${DBPWD}
+      APPHOST: ${APPHOST}
     volumes:
-      - ./html_public:/var/www/html
-      - ./config/000-default.conf:/etc/apache2/sites-available/000-default.conf
+      - ./public_html:/var/www/html
+      - ./storage:/var/www/storage
+#      - ./config/000-default.conf:/etc/apache2/sites-available/000-default.conf
       - ./config/config.php:/var/www/html/config.php
       - ./config/config_admin.php:/var/www/html/admin/config.php
     ports:
