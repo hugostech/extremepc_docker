@@ -50,6 +50,7 @@ services:
     volumes:
       - ./config/start.sh:/var/www/start.sh
       - ${ITALKERDIR}:/var/www
+      - ${SITEDIR}/image:/image
     environment:
       EXTREMEPC_PASSWORD: ${DBPWD}
     ports:
