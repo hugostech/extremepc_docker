@@ -35,6 +35,7 @@ services:
       - extremepc_net
   dbadmin:
     image: phpmyadmin/phpmyadmin
+    restart: always
     environment:
       MYSQL_ROOT_PASSWORD: ${DBPWD}
     ports:
