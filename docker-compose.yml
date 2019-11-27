@@ -55,6 +55,7 @@ services:
       - ${SITEDIR}/image:/image
     environment:
       EXTREMEPC_PASSWORD: ${DBPWD}
+      ROCTECH_REMOTE: ${ROCTECH_REMOTE}
     ports:
       - 8184:8080
     networks:
