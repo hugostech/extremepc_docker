@@ -39,7 +39,7 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: ${DBPWD}
     ports:
-      - 8080:80
+      - 8081:80
     networks:
       - extremepc_net
   italker:
@@ -62,6 +62,14 @@ services:
       - extremepc_net
     links:
       - db
+      - redis
+  redis:
+    image: redis
+    restart: always
+    networks:
+      - extremepc_net
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
 networks:
   extremepc_net:
 volumes:
