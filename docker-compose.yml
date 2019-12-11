@@ -33,6 +33,13 @@ services:
       - mysql-data:/var/lib/mysql
     networks:
       - extremepc_net
+  redis:
+    image: redis
+    restart: always
+    networks:
+      - extremepc_net
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
   dbadmin:
     image: phpmyadmin/phpmyadmin
     restart: always
@@ -56,6 +63,7 @@ services:
     environment:
       EXTREMEPC_PASSWORD: ${DBPWD}
       ROCTECH_REMOTE: ${ROCTECH_REMOTE}
+      APP_KEY: ${APP_KEY}
     ports:
       - 8184:8080
     networks:
@@ -63,13 +71,26 @@ services:
     links:
       - db
       - redis
-  redis:
-    image: redis
+  worker:
+    depends_on:
+      - italker
+    image: italker:latest
     restart: always
+    volumes:
+      - ./config/worker.sh:/var/www/start.sh
+      - ${ITALKERDIR}:/var/www
+      - ${SITEDIR}/image:/image
+    environment:
+      EXTREMEPC_PASSWORD: ${DBPWD}
+      ROCTECH_REMOTE: ${ROCTECH_REMOTE}
+      APP_KEY: ${APP_KEY}
     networks:
       - extremepc_net
-    environment:
-      - ALLOW_EMPTY_PASSWORD=yes
+    links:
+      - db
+      - redis
+    command: /bin/bash start.sh
+
 networks:
   extremepc_net:
 volumes:
