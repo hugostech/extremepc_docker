@@ -39,3 +39,25 @@ slow_query_log=1
 long_query_time=0.1
 log_queries_not_using_indexes=1
 slow_query_log_file=/var/log/mysql/mysql-slow.log
+sort_buffer_size = 2M
+#connection级参数。太大将导致在连接数增高时，内存不足。
+
+max_allowed_packet = 32M
+#网络传输中一次消息传输量的最大值。系统默认值 为1MB，最大值是1GB，必须设置1024的倍数。
+
+join_buffer_size = 2M
+#和sort_buffer_size一样，该参数对应的分配内存也是每个连接独享
+
+tmp_table_size = 256M
+#默认大小是 32M。GROUP BY 多不多的问题
+
+max_heap_table_size = 256M
+key_buffer_size = 2048M
+#索引的缓冲区大小，对于内存在4GB左右的服务器来说，该参数可设置为256MB或384MB。
+
+read_buffer_size = 1M
+read_rnd_buffer_size = 16M
+#进行排序查询时，MySql会首先扫描一遍该缓冲，以避免磁盘搜索
+
+bulk_insert_buffer_size = 64M
+#批量插入数据缓存大小，可以有效提高插入效率，默认为8M
