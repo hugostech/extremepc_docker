@@ -31,6 +31,7 @@ services:
       MYSQL_DATABASE: roctech
     volumes:
       - mysql-data:/var/lib/mysql
+      - ./config/mysqld.cnf:/etc/mysql/mysql.conf.d/mysqld.cnf
     networks:
       - extremepc_net
   redis:
