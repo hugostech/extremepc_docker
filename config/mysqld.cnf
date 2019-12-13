@@ -61,3 +61,15 @@ read_rnd_buffer_size = 16M
 
 bulk_insert_buffer_size = 64M
 #批量插入数据缓存大小，可以有效提高插入效率，默认为8M
+
+innodb_buffer_pool_size = 2048M
+只需要用Innodb的话则可以设置它高达 70-80% 的可用内存。一些应用于 key_buffer 的规则有 ——如果你的数据量不大，并且不会暴增，那么无需把innodb_buffer_pool_size 设置的太大了。
+
+innodb_additional_mem_pool_size = 16M
+网络传输中一次消息传输量的最大值。系统默认值为1MB，最大值是1GB，必须设置1024的倍数。
+
+innodb_log_files_in_group = 3
+循环方式将日志文件写到多个文件。推荐设置为3
+
+innodb_lock_wait_timeout = 120
+InnoDB 有其内置的死锁检测机制，能导致未完成的事务回滚。innodb_file_per_table = 0 独享表空间，关闭
