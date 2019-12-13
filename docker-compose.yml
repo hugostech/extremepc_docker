@@ -58,6 +58,7 @@ services:
     restart: always
     command: /bin/bash start.sh
     volumes:
+      - ./config/uploads.ini:/usr/local/etc/php/conf.d/uploads.ini
       - ./config/start.sh:/var/www/start.sh
       - ${ITALKERDIR}:/var/www
       - ${SITEDIR}/image:/image
