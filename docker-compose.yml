@@ -4,10 +4,12 @@ services:
     build: .
     image: extremepc:latest
     restart: always
-    depends_on:
-      - db
+#    depends_on:
+#      - db
     environment:
-      MYSQL_ROOT_PASSWORD: ${DBPWD}
+      MYSQL_USER: ${DBUSER}
+      MYSQL_HOST: ${DBHOST}
+      MYSQL_PASSWORD: ${DBPWD}
       APPHOST: ${APPHOST}
     volumes:
       - ${SITEDIR}:/var/www/html
@@ -18,22 +20,22 @@ services:
       - ./config/uploads.ini:/usr/local/etc/php/conf.d/uploads.ini
     ports:
       - 8180-8183:80
-    links:
-      - db
+#    links:
+#      - db
     networks:
       - extremepc_net
-  db:
-    image: mysql:5.7
-    command: --default-authentication-plugin=mysql_native_password
-    restart: always
-    environment:
-      MYSQL_ROOT_PASSWORD: ${DBPWD}
-      MYSQL_DATABASE: roctech
-    volumes:
-      - mysql-data:/var/lib/mysql
-      - ./config/mysqld.cnf:/etc/mysql/mysql.conf.d/mysqld.cnf
-    networks:
-      - extremepc_net
+#  db:
+#    image: mysql:5.7
+#    command: --default-authentication-plugin=mysql_native_password
+#    restart: always
+#    environment:
+#      MYSQL_ROOT_PASSWORD: ${DBPWD}
+#      MYSQL_DATABASE: roctech
+#    volumes:
+#      - mysql-data:/var/lib/mysql
+#      - ./config/mysqld.cnf:/etc/mysql/mysql.conf.d/mysqld.cnf
+#    networks:
+#      - extremepc_net
   redis:
     image: redis
     restart: always
@@ -46,6 +48,7 @@ services:
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: ${DBPWD}
+      PMA_HOST: ${DBHOST}
     ports:
       - 8081:80
     networks:
@@ -63,6 +66,8 @@ services:
       - ${ITALKERDIR}:/var/www
       - ${SITEDIR}/image:/image
     environment:
+      EXTREMEPC_USER: ${DBUSER}
+      EXTREMEPC_HOST: ${DBHOST}
       EXTREMEPC_PASSWORD: ${DBPWD}
       ROCTECH_REMOTE: ${ROCTECH_REMOTE}
       APP_KEY: ${APP_KEY}
@@ -77,7 +82,6 @@ services:
     networks:
       - extremepc_net
     links:
-      - db
       - redis
   worker:
     depends_on:
@@ -89,13 +93,20 @@ services:
       - ${ITALKERDIR}:/var/www
       - ${SITEDIR}/image:/image
     environment:
+      EXTREMEPC_USER: ${DBUSER}
+      EXTREMEPC_HOST: ${DBHOST}
       EXTREMEPC_PASSWORD: ${DBPWD}
       ROCTECH_REMOTE: ${ROCTECH_REMOTE}
       APP_KEY: ${APP_KEY}
+      MAIL_DRIVER: ${MAIL_DRIVER}
+      MAIL_HOST: ${MAIL_HOST}
+      MAIL_PORT: ${MAIL_PORT}
+      MAIL_USERNAME: ${MAIL_USERNAME}
+      MAIL_PASSWORD: ${MAIL_PASSWORD}
+      MAIL_ENCRYPTION: ${MAIL_ENCRYPTION}
     networks:
       - extremepc_net
     links:
-      - db
       - redis
     command: /bin/bash start.sh
 
