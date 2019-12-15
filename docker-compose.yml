@@ -4,8 +4,8 @@ services:
     build: .
     image: extremepc:latest
     restart: always
-#    depends_on:
-#      - db
+    depends_on:
+      - db
     environment:
       MYSQL_USER: ${DBUSER}
       MYSQL_HOST: ${DBHOST}
@@ -19,23 +19,23 @@ services:
       - ./config/config_admin.php:/var/www/html/admin/config.php
       - ./config/uploads.ini:/usr/local/etc/php/conf.d/uploads.ini
     ports:
-      - 8180-8183:80
-#    links:
-#      - db
+      - 8180:80
+    links:
+      - db
     networks:
       - extremepc_net
-#  db:
-#    image: mysql:5.7
-#    command: --default-authentication-plugin=mysql_native_password
-#    restart: always
-#    environment:
-#      MYSQL_ROOT_PASSWORD: ${DBPWD}
-#      MYSQL_DATABASE: roctech
-#    volumes:
-#      - mysql-data:/var/lib/mysql
-#      - ./config/mysqld.cnf:/etc/mysql/mysql.conf.d/mysqld.cnf
-#    networks:
-#      - extremepc_net
+  db:
+    image: mysql:5.7
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DBPWD}
+      MYSQL_DATABASE: roctech
+    volumes:
+      - mysql-data:/var/lib/mysql
+      - ./config/mysqld.cnf:/etc/mysql/mysql.conf.d/mysqld.cnf
+    networks:
+      - extremepc_net
   redis:
     image: redis
     restart: always
@@ -82,6 +82,7 @@ services:
     networks:
       - extremepc_net
     links:
+      - db
       - redis
   worker:
     depends_on:
@@ -107,6 +108,7 @@ services:
     networks:
       - extremepc_net
     links:
+      - db
       - redis
     command: /bin/bash start.sh
 
