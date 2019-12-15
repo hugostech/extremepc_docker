@@ -39,7 +39,7 @@ slow_query_log=1
 long_query_time=0.1
 log_queries_not_using_indexes=1
 slow_query_log_file=/var/log/mysql/mysql-slow.log
-sort_buffer_size = 2M
+sort_buffer_size = 10M
 #connection级参数。太大将导致在连接数增高时，内存不足。
 
 max_allowed_packet = 32M
@@ -74,3 +74,4 @@ innodb_lock_wait_timeout = 120
 query_cache_type=1
 query_cache_size=1024M
 query_cache_limit=10m
+max_length_for_sort_data=8096
