@@ -48,7 +48,7 @@ services:
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: ${DBPWD}
-      PMA_HOST: ${DBHOST}
+#      PMA_HOST: ${DBHOST}
     ports:
       - 8081:80
     networks:
