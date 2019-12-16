@@ -1,6 +1,6 @@
 <?php
 // HTTP
-define('HTTP_SERVER', 'http://'.getenv('APPHOST').'/');
+define('HTTP_SERVER', 'https://'.getenv('APPHOST').'/');
 
 // HTTPS
 define('HTTPS_SERVER', 'https://'.getenv('APPHOST').'/');
