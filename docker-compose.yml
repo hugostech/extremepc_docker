@@ -10,7 +10,7 @@ services:
     restart: always
     depends_on:
       - db
-      - redis
+      - memcached
     environment:
       MYSQL_USER: ${DBUSER}
       MYSQL_HOST: ${DBHOST}
@@ -27,7 +27,7 @@ services:
       - 8180:80
     links:
       - db
-      - redis
+      - memcached
     networks:
       - extremepc_net
   db:
@@ -49,6 +49,11 @@ services:
       - extremepc_net
     environment:
       - ALLOW_EMPTY_PASSWORD=yes
+  memcached:
+    image: memcached
+    restart: always
+    networks:
+      - extremepc_net
   dbadmin:
     image: phpmyadmin/phpmyadmin
     restart: always

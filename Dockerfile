@@ -13,7 +13,9 @@ RUN set -xe \
     && docker-php-ext-configure gd --with-png-dir=/usr --with-jpeg-dir=/usr \
     && docker-php-ext-install gd mbstring mysqli pdo_mysql zip \
     && pecl install mcrypt-1.0.2 \
-    && docker-php-ext-enable mcrypt
+    && docker-php-ext-enable mcrypt \
+    && pecl install memcached \
+    && docker-php-ext-enable memcached
 
 RUN mkdir /var/www/storage
 

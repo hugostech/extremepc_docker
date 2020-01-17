@@ -20,10 +20,11 @@ define('DIR_MODIFICATION', DIR_STORAGE . 'modification/');
 define('DIR_SESSION', DIR_STORAGE . 'session/');
 define('DIR_UPLOAD', DIR_STORAGE . 'upload/');
 
-//cache
-define('CACHE_HOSTNAME', 'redis');
-define('CACHE_PORT', '6379');
-define('CACHE_PREFIX', 'redis_');
+// Cache
+define('CACHE_DRIVER', 'memcached'); // 'file', 'apc', 'mem' or 'memcached'
+define('CACHE_HOSTNAME', 'memcached');
+define('CACHE_PORT', '11211');
+define('CACHE_PREFIX', 'oc_');
 
 // DB
 define('DB_DRIVER', 'mysqli');
