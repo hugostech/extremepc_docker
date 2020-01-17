@@ -1,7 +1,7 @@
 <?php
 // HTTP
-define('HTTP_SERVER', 'http://'.getenv('APPHOST').'/admin/');
-define('HTTP_CATALOG', 'http://'.getenv('APPHOST').'/');
+define('HTTP_SERVER', 'https://'.getenv('APPHOST').'/admin/');
+define('HTTP_CATALOG', 'https://'.getenv('APPHOST').'/');
 
 // HTTPS
 define('HTTPS_SERVER', 'https://'.getenv('APPHOST').'/admin/');
