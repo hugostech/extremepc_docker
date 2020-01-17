@@ -20,6 +20,11 @@ define('DIR_MODIFICATION', DIR_STORAGE . 'modification/');
 define('DIR_SESSION', DIR_STORAGE . 'session/');
 define('DIR_UPLOAD', DIR_STORAGE . 'upload/');
 
+//cache
+define('CACHE_HOSTNAME', 'redis');
+define('CACHE_PORT', '6379');
+define('CACHE_PREFIX', 'redis_');
+
 // DB
 define('DB_DRIVER', 'mysqli');
 define('DB_HOSTNAME', getenv('MYSQL_HOST'));
