@@ -4,7 +4,7 @@ MAINTAINER hugo <hugowangchn@gmail.com>
 RUN a2enmod rewrite headers
 
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends git zip libzip-dev
+    apt-get install -y --no-install-recommends git zip libzip-dev libmemcached-dev
 
 RUN set -xe \
     && apt-get update \
