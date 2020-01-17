@@ -71,14 +71,23 @@ table_open_cache = 2048
 innodb_log_files_in_group = 3
 #循环方式将日志文件写到多个文件。推荐设置为3
 
-innodb_log_file_size = 512M
+innodb_log_file_size = 1024M
 innodb_lock_wait_timeout = 120
 #InnoDB 有其内置的死锁检测机制，能导致未完成的事务回滚。
 innodb_file_per_table = 0
 #独享表空间，关闭
 performance_schema = ON enable PFS
 
-query_cache_type=1
-query_cache_size=1024M
-query_cache_limit=10m
+innode_flush_log_at_trx_commit = 0
+#所以你如果设置它为0或2，则同步操作每秒执行一次。
+
+sync_binlog = 0
+# 如果你的服务器没有设置从服务器，而且你不做备份，那么设置sync_binlog=0将对性能有好处。
+
+innode_flush_method = O_DIRECT
+# 将innodb_flush_method设置为O_DIRECT以避免双重缓冲.
+
+query_cache_type = OFF
+query_cache_size = 0
+query_cache_limit = 10M
 max_length_for_sort_data=8096
