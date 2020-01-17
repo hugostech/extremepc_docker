@@ -3,6 +3,10 @@ services:
   opencart:
     build: .
     image: extremepc:latest
+    deploy:
+      resources:
+        limits:
+          cpus: '0.90'
     restart: always
     depends_on:
       - db
