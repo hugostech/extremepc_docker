@@ -87,7 +87,7 @@ sync_binlog = 0
 innodb_flush_method = O_DIRECT
 # 将innodb_flush_method设置为O_DIRECT以避免双重缓冲.
 
-query_cache_type = OFF
-query_cache_size = 0
+query_cache_type = 1
+query_cache_size = 1024M
 query_cache_limit = 10M
 max_length_for_sort_data=8096
