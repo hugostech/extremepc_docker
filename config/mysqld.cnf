@@ -64,7 +64,10 @@ bulk_insert_buffer_size = 64M
 
 innodb_buffer_pool_size = 4096M
 #只需要用Innodb的话则可以设置它高达 70-80% 的可用内存。一些应用于 key_buffer 的规则有 ——如果你的数据量不大，并且不会暴增，那么无需把innodb_buffer_pool_size 设置的太大了。
-
+innodb_buffer_pool_chunk_size = 128M
+innodb-buffer-pool-instances = 8
+#innodb_buffer_pool_size is a multiple of innodb_buffer_pool_chunk_size * innodb_buffer_pool_instances.
+table_open_cache = 2048
 innodb_log_files_in_group = 3
 #循环方式将日志文件写到多个文件。推荐设置为3
 
