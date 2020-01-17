@@ -78,13 +78,13 @@ innodb_file_per_table = 0
 #独享表空间，关闭
 performance_schema = ON enable PFS
 
-innode_flush_log_at_trx_commit = 0
+innodb_flush_log_at_trx_commit = 0
 #所以你如果设置它为0或2，则同步操作每秒执行一次。
 
 sync_binlog = 0
 # 如果你的服务器没有设置从服务器，而且你不做备份，那么设置sync_binlog=0将对性能有好处。
 
-innode_flush_method = O_DIRECT
+innodb_flush_method = O_DIRECT
 # 将innodb_flush_method设置为O_DIRECT以避免双重缓冲.
 
 query_cache_type = OFF
