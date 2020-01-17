@@ -23,7 +23,7 @@ services:
       - ./config/config_admin.php:/var/www/html/admin/config.php
       - ./config/uploads.ini:/usr/local/etc/php/conf.d/uploads.ini
     ports:
-      - 8180-8181:80
+      - 8180:80
     links:
       - db
     networks:
