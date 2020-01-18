@@ -122,10 +122,51 @@ services:
       - db
       - redis
     command: /bin/bash start.sh
+  cadvisor:
+    image: google/cadvisor:latest
+    restart: always
+    depends_on:
+      - influx
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:ro
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+      - /dev/disk/:/dev/disk:ro
+    command: -storage_driver=influxdb -storage_driver_db=cadvisor -storage_driver_host=influx:8086
+    ports:
+      - 8185:8080
+    links:
+      - influx
+    networks:
+      - extremepc_net
+  influx:
+    image: influxdb
+    restart: always
+    volumes:
+      - influxdb:/var/lib/influxdb
+    networks:
+      - extremepc_net
+    environment:
+      INFLUXDB_DB: cadvisor
+      INFLUXDB_ADMIN_PASSWORD:  ${DBPWD}
+  grafaba:
+    image: grafana/grafana
+    restart: always
+    ports:
+      - 8189:3000
+    links:
+      - influx
+    networks:
+      - extremepc_net
+    volumes:
+      - grafana-storage:/var/lib/grafana
 
 networks:
   extremepc_net:
 volumes:
   mysql-data:
+  influxdb:
+  grafana-storage:
 
 
