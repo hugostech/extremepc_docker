@@ -21,7 +21,7 @@ define('DIR_SESSION', DIR_STORAGE . 'session/');
 define('DIR_UPLOAD', DIR_STORAGE . 'upload/');
 
 // Cache
-define('CACHE_DRIVER', 'file'); // 'file', 'apc', 'mem' or 'memcached'
+define('CACHE_DRIVER', 'memcached'); // 'file', 'apc', 'mem' or 'memcached'
 define('CACHE_HOSTNAME', 'memcached');
 define('CACHE_PORT', '11211');
 define('CACHE_PREFIX', 'oc_');
