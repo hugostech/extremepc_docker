@@ -76,7 +76,7 @@ innodb_lock_wait_timeout = 120
 #InnoDB 有其内置的死锁检测机制，能导致未完成的事务回滚。
 innodb_file_per_table = 0
 #独享表空间，关闭
-performance_schema = ON enable PFS
+performance_schema = ON
 
 innodb_flush_log_at_trx_commit = 0
 #所以你如果设置它为0或2，则同步操作每秒执行一次。
