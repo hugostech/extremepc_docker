@@ -36,8 +36,8 @@ datadir		= /var/lib/mysql
 # Disabling symbolic-links is recommended to prevent assorted security risks
 symbolic-links=0
 slow_query_log=1
-long_query_time=0.8
-log_queries_not_using_indexes=1
+long_query_time=2
+log_queries_not_using_indexes=0
 slow_query_log_file=/var/log/mysql/mysql-slow.log
 sort_buffer_size = 10M
 #connection级参数。太大将导致在连接数增高时，内存不足。
